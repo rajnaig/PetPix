@@ -9,11 +9,11 @@ namespace Backend.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly ILogic<User> userLogic;
 
-        public UserController(ILogic<User> userLogic)
+        public UsersController(ILogic<User> userLogic)
         {
             this.userLogic = userLogic;
         }
