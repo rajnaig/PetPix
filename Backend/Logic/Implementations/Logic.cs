@@ -43,5 +43,11 @@ namespace Backend.Logic.Implementations
         {
             _repository.SaveChanges();
         }
+
+        public void DeleteAll()
+        {
+            _repository.DeleteAll();
+            _repository.SaveChanges();
+        }
     }
 }
