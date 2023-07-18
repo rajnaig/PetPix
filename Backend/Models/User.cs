@@ -4,8 +4,8 @@ namespace Backend.Models
 {
     public class User : IdentityUser
     {
-        public string Bio { get; set; }
-        public string ProfilePictureUrl { get; set; }
+        public string? Bio { get; set; }
+        public string? ProfilePictureUrl { get; set; }
         public byte[]? PasswordSalt { get; set; }
 
         // navigation properties 

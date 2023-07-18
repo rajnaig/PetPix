@@ -55,7 +55,6 @@ namespace Backend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Bio")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -92,7 +91,6 @@ namespace Backend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ProfilePictureUrl")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SecurityStamp")
@@ -111,17 +109,17 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "eb91cde3-e3ef-4007-8181-e10ba5e75dc6",
+                            Id = "87699a93-dd0e-4eb0-8d33-4ac9ecd318d6",
                             AccessFailedCount = 0,
                             Bio = "test",
-                            ConcurrencyStamp = "a2021d7a-923a-4c0e-a5f1-d7c3d1b4f9db",
+                            ConcurrencyStamp = "f0e327ff-f9d0-4ba2-a407-931088a510a1",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "123456",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "test",
-                            SecurityStamp = "60d94b8f-5ed7-4412-8946-f3531e183ee1",
+                            SecurityStamp = "7d45633a-e030-41a1-97e6-ef5af23d3ca1",
                             TwoFactorEnabled = false,
                             UserName = "Admin1"
                         });
