@@ -21,10 +21,12 @@ namespace Backend.Controllers
         private readonly ILogic<User> _logic;
         private readonly ITokenGeneratorService _tokenGeneratorService;
 
-        public AuthController(UserManager<User> userManager, ILogic<User> userLogic)
+        public AuthController(UserManager<User> userManager, ILogic<User> userLogic, ITokenGeneratorService tokenGeneratorService)
         {
             _userManager = userManager;
             _logic = userLogic;
+            _tokenGeneratorService = tokenGeneratorService; 
+
         }
 
         [HttpPost("login")]

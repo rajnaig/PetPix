@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230718181001_DBMUserTable")]
+    [Migration("20230718193935_DBMUserTable")]
     partial class DBMUserTable
     {
         /// <inheritdoc />
@@ -22,8 +22,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Post", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Caption")
@@ -115,17 +114,17 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ae52b2f0-2900-464a-bb49-e59d25c06c98",
+                            Id = "d788a469-22f9-4742-81ee-4964835585ad",
                             AccessFailedCount = 0,
                             Bio = "test",
-                            ConcurrencyStamp = "df31d425-06d3-4a2e-a271-5ff644accf6e",
+                            ConcurrencyStamp = "653fdaa9-7071-435b-b91f-fe8c280873ab",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "123456",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "test",
-                            SecurityStamp = "ba417e3b-266c-48f8-98c0-26f3c3c43175",
+                            SecurityStamp = "0eef1d75-cd55-45b9-b400-fbf23d09ef7a",
                             TwoFactorEnabled = false,
                             UserName = "Admin1"
                         });

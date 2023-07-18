@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class db1 : Migration
+    public partial class DBMUserTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,6 +18,7 @@ namespace Backend.Migrations
                     Id = table.Column<string>(type: "TEXT", nullable: false),
                     Bio = table.Column<string>(type: "TEXT", nullable: false),
                     ProfilePictureUrl = table.Column<string>(type: "TEXT", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "BLOB", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
@@ -61,8 +62,8 @@ namespace Backend.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "AccessFailedCount", "Bio", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "eb91cde3-e3ef-4007-8181-e10ba5e75dc6", 0, "test", "a2021d7a-923a-4c0e-a5f1-d7c3d1b4f9db", "admin@admin.com", false, false, null, null, null, "123456", null, false, "test", "60d94b8f-5ed7-4412-8946-f3531e183ee1", false, "Admin1" });
+                columns: new[] { "Id", "AccessFailedCount", "Bio", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PasswordSalt", "PhoneNumber", "PhoneNumberConfirmed", "ProfilePictureUrl", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "d788a469-22f9-4742-81ee-4964835585ad", 0, "test", "653fdaa9-7071-435b-b91f-fe8c280873ab", "admin@admin.com", false, false, null, null, null, "123456", null, null, false, "test", "0eef1d75-cd55-45b9-b400-fbf23d09ef7a", false, "Admin1" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_UserId1",
