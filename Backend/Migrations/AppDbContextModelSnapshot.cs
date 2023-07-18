@@ -19,8 +19,7 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Post", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Caption")
@@ -109,17 +108,17 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2af9e6a3-d0ef-4f57-863b-200c29a73d98",
+                            Id = "eb91cde3-e3ef-4007-8181-e10ba5e75dc6",
                             AccessFailedCount = 0,
                             Bio = "test",
-                            ConcurrencyStamp = "f862ac52-edf2-4a9c-9cf2-9581755630da",
+                            ConcurrencyStamp = "a2021d7a-923a-4c0e-a5f1-d7c3d1b4f9db",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "123456",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "test",
-                            SecurityStamp = "f0d57124-738c-4209-82b6-42fc54ba5cb2",
+                            SecurityStamp = "60d94b8f-5ed7-4412-8946-f3531e183ee1",
                             TwoFactorEnabled = false,
                             UserName = "Admin1"
                         });

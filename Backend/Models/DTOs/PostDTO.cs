@@ -1,18 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Backend.Models
+﻿namespace Backend.Models.DTOs
 {
-    public class Post
+    public class PostDTO
     {
-        [Key]
         public string Id { get; set; }
         public Guid UserId { get; set; }
         public string ImageUrl { get; set; }
         public string Caption { get; set; }
         public DateTime CreatedAt { get; set; }
-        //navigation properties 
 
-        public Post()
+        public PostDTO()
         {
             Id = Guid.NewGuid().ToString();
             CreatedAt = DateTime.Now;
