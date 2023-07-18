@@ -14,6 +14,8 @@ namespace Backend.Logic.Implementations
 
         public void Create(T entity)
         {
+
+            var a = entity;
             _repository.Create(entity);
         }
 

@@ -3,6 +3,7 @@ using System;
 using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,16 +11,19 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230718181001_DBMUserTable")]
+    partial class DBMUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
 
             modelBuilder.Entity("Backend.Models.Post", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Caption")
@@ -111,17 +115,17 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "eb91cde3-e3ef-4007-8181-e10ba5e75dc6",
+                            Id = "ae52b2f0-2900-464a-bb49-e59d25c06c98",
                             AccessFailedCount = 0,
                             Bio = "test",
-                            ConcurrencyStamp = "a2021d7a-923a-4c0e-a5f1-d7c3d1b4f9db",
+                            ConcurrencyStamp = "df31d425-06d3-4a2e-a271-5ff644accf6e",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "123456",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "test",
-                            SecurityStamp = "60d94b8f-5ed7-4412-8946-f3531e183ee1",
+                            SecurityStamp = "ba417e3b-266c-48f8-98c0-26f3c3c43175",
                             TwoFactorEnabled = false,
                             UserName = "Admin1"
                         });
