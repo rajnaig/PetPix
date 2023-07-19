@@ -1,5 +1,6 @@
 ﻿using Backend.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
@@ -7,20 +8,19 @@ using System.Text;
 
 namespace Backend.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext: IdentityDbContext<User, IdentityRole, string>
     {
-        public DbSet<User> Users { get; set; }
         public DbSet<Post> Posts { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt) { }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<IdentityRole>().HasData(
-            //    new { Id = 1, Name = "Admin", NormalizedName = "ADMIN" },
-            //    new { Id = 2, Name = "Moderator", NormalizedName = "MODERATOR" },
-            //    new { Id = 3, Name = "User", NormalizedName = "USER" }
-            //    );
+            modelBuilder.Entity<IdentityRole>().HasData(
+                new { Id = "1", Name = "Admin", NormalizedName = "ADMIN" },
+                new { Id = "2", Name = "Moderator", NormalizedName = "MODERATOR" },
+                new { Id = "3", Name = "User", NormalizedName = "USER" }
+                );
 
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Posts)
@@ -40,6 +40,8 @@ namespace Backend.Data
             };
 
             modelBuilder.Entity<User>().HasData(user1);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

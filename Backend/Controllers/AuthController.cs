@@ -21,6 +21,7 @@ namespace Backend.Controllers
         private readonly ILogic<User> _userLogic;
         private readonly ITokenGeneratorService _tokenGeneratorService;
 
+
         public AuthController(UserManager<User> userManager, ILogic<User> userLogic, ITokenGeneratorService tokenGeneratorService)
         {
             _userManager = userManager;

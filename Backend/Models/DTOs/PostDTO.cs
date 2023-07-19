@@ -8,6 +8,7 @@
         public string Caption { get; set; }
         public DateTime CreatedAt { get; set; }
 
+
         public PostDTO()
         {
             Id = Guid.NewGuid().ToString();

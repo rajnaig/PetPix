@@ -1,6 +1,7 @@
 ﻿using Backend.Logic.Intefaces;
 using Backend.Models;
 using Backend.Models.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Net;
@@ -17,7 +18,8 @@ namespace Backend.Controllers
         {
             this.postLogic = postLogic;
         }
-
+        
+        [Authorize]
         [HttpGet("{postId}")]
         public IActionResult Get(string postId)
         {
