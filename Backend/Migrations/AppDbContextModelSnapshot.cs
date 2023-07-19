@@ -33,15 +33,13 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -125,13 +123,16 @@ namespace Backend.Migrations
                             AccessFailedCount = 0,
                             Bio = "test",
                             ConcurrencyStamp = "7a5b8866-98f9-4025-a5cb-776154db5a6e",
+                            
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "123456",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "test",
+
                             SecurityStamp = "beaf67bf-53de-424b-8382-41dbcb403e68",
+
                             TwoFactorEnabled = false,
                             UserName = "Admin1"
                         });
@@ -287,9 +288,13 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("Backend.Models.Post", b =>
                 {
-                    b.HasOne("Backend.Models.User", null)
+                    b.HasOne("Backend.Models.User", "User")
                         .WithMany("Posts")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

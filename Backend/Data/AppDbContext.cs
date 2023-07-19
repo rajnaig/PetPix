@@ -11,9 +11,7 @@ namespace Backend.Data
     public class AppDbContext: IdentityDbContext<User, IdentityRole, string>
     {
         public DbSet<Post> Posts { get; set; }
-
-        public AppDbContext(DbContextOptions<AppDbContext> opt):base(opt) { }
-
+        public AppDbContext(DbContextOptions<AppDbContext> opt) : base(opt) { }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,6 +21,14 @@ namespace Backend.Data
                 new { Id = "2", Name = "Moderator", NormalizedName = "MODERATOR" },
                 new { Id = "3", Name = "User", NormalizedName = "USER" }
                 );
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Posts)
+                .WithOne(p => p.User)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
 
             User user1 = new User
             {
