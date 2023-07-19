@@ -18,14 +18,14 @@ namespace Backend.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
-        private readonly ILogic<User> _logic;
+        private readonly ILogic<User> _userLogic;
         private readonly ITokenGeneratorService _tokenGeneratorService;
 
         public AuthController(UserManager<User> userManager, ILogic<User> userLogic, ITokenGeneratorService tokenGeneratorService)
         {
             _userManager = userManager;
-            _logic = userLogic;
-            _tokenGeneratorService = tokenGeneratorService; 
+            _userLogic = userLogic;
+            _tokenGeneratorService = tokenGeneratorService;
 
         }
 
@@ -33,9 +33,9 @@ namespace Backend.Controllers
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             // get the specific user from the database -> it might be slow in a bigger dataset
-            var user = _logic.GetAll().SingleOrDefault(t => t.UserName == loginDto.Username);
-            
-            if (user == null)   return Unauthorized("Invalid username");
+            var user = _userLogic.GetAll().SingleOrDefault(t => t.UserName == loginDto.Username);
+
+            if (user == null) return Unauthorized("Invalid username");
             {
                 using var hmac = new HMACSHA512(user.PasswordSalt);
                 byte[] hash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
@@ -70,25 +70,25 @@ namespace Backend.Controllers
             user.PasswordHash = Encoding.UTF8.GetString(hash, 0, hash.Length);
             user.PasswordSalt = hmac.Key;
 
-            _logic.Create(user);
-            _logic.SaveChanges();
+            _userLogic.Create(user);
+            _userLogic.SaveChanges();
 
             return Ok(new UserDto()
             {
                 Username = user.UserName,
                 Token = await _tokenGeneratorService.GenerateTokenAsync(user)
-            }); 
+            });
         }
 
         private bool UserExists(string username)
         {
-            bool exist = _logic.GetAll().Any(x => x.UserName.Equals(username));
+            bool exist = _userLogic.GetAll().Any(x => x.UserName.Equals(username));
             return exist;
         }
 
         private bool EmailExists(string email)
         {
-            bool exist = _logic.GetAll().Any(x => x.Email.Equals(email));
+            bool exist = _userLogic.GetAll().Any(x => x.Email.Equals(email));
             return exist;
         }
     }

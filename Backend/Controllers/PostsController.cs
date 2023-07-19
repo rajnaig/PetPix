@@ -45,8 +45,6 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        [HttpPost]
-        [HttpPost]
         public IActionResult Post([FromBody] PostDTO newPost)
         {
             try
