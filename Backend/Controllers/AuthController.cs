@@ -10,6 +10,7 @@ using System.Text;
 using System.Security.Cryptography;
 using Backend.Logic.Intefaces;
 using Backend.Services.ServiceInterfaces;
+using System.Net;
 
 namespace Backend.Controllers
 {
@@ -79,6 +80,29 @@ namespace Backend.Controllers
                 Username = user.UserName,
                 Token = await _tokenGeneratorService.GenerateTokenAsync(user)
             });
+        }
+
+        [HttpPost("addadmin")]
+        public async Task<IActionResult> AddAdmin([FromBody] string email)
+        {
+            try
+            {
+                User? user = _userLogic.GetAll().FirstOrDefault(x => x.Email == email);
+
+                if (user == null)
+                {
+                    throw new Exception($"User does not exist with id: {email}");
+                }
+
+                await _userManager.AddToRoleAsync(user, "Admin");
+
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Server error Code {HttpStatusCode.InternalServerError} - Error: {ex.Message}");
+            }
         }
 
         private bool UserExists(string username)

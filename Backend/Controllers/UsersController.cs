@@ -1,6 +1,7 @@
 ﻿using Backend.Logic.Intefaces;
 using Backend.Models;
 using Backend.Models.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -31,7 +32,7 @@ namespace Backend.Controllers
             }
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpGet("{id}", Name = "GetUser")]
         public IActionResult GetUser(string id)
         {
@@ -45,7 +46,7 @@ namespace Backend.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete] 
         public IActionResult DeleteUser(string id)
         {
             try

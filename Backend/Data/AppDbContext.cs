@@ -36,7 +36,7 @@ namespace Backend.Data
                 ProfilePictureUrl = "test",
                 UserName = "Admin1",
                 Email = "admin@admin.com",
-                PasswordHash = "123456"
+                PasswordHash = "123456",
             };
 
             modelBuilder.Entity<User>().HasData(user1);
