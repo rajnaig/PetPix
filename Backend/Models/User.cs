@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
@@ -9,6 +10,7 @@ namespace Backend.Models
         public byte[]? PasswordSalt { get; set; }
 
         // navigation properties 
+        [NotMapped]
         public virtual ICollection<Post> Posts { get; set; }
 
         public User()
