@@ -12,6 +12,8 @@ using Backend.Services;
 using Backend.Services.ServiceInterfaces;
 using Backend.Services.ServiceImplementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +51,7 @@ builder.Services.AddAuthentication(option =>
     option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     option.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 });
+
 
 var app = builder.Build();
 
