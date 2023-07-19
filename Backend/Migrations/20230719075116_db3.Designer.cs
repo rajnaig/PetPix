@@ -3,6 +3,7 @@ using System;
 using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230719075116_db3")]
+    partial class db3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
@@ -38,8 +41,6 @@ namespace Backend.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Posts");
                 });
@@ -107,36 +108,20 @@ namespace Backend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "38ffa381-d5eb-4816-8edd-d9cccb123ca3",
+                            Id = "3e34beb6-278a-4ea2-8af4-58d06a28cd9a",
                             AccessFailedCount = 0,
                             Bio = "test",
-                            ConcurrencyStamp = "6fd469f9-14a7-411f-a685-c105f6bfc1f6",
+                            ConcurrencyStamp = "6304ce97-a467-4ca3-b450-4e19d0aa9f30",
                             Email = "admin@admin.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PasswordHash = "123456",
                             PhoneNumberConfirmed = false,
                             ProfilePictureUrl = "test",
-                            SecurityStamp = "d3b3876a-2b03-4e74-b67e-daab0c8349a5",
+                            SecurityStamp = "e9842f02-24e0-4fea-99c1-ecdc11f5e162",
                             TwoFactorEnabled = false,
                             UserName = "Admin1"
                         });
-                });
-
-            modelBuilder.Entity("Backend.Models.Post", b =>
-                {
-                    b.HasOne("Backend.Models.User", "User")
-                        .WithMany("Posts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Backend.Models.User", b =>
-                {
-                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }
